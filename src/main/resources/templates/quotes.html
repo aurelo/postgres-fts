@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+
+    <title>Quotes</title>
+</head>
+<body>
+
+<div class="ui segment container">
+
+    <h1 class="ui header">
+        Quotes
+    </h1>
+
+    <table class="ui small table">
+        <tbody>
+           <tr data-th-each="q: ${quotes}">
+               <td data-th-utext="${q.author}"></td>
+               <td data-th-utext="${q.quote}"></td>
+           </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+<style>
+    em, b {
+      color: red;
+    }
+</style>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- You MUST include jQuery 3.4+ before Fomantic -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+
+    <title>Search</title>
+</head>
+<body>
+
+<div class="ui padded segment container">
+    <h1 class="ui dividing header">PostgreSQL Full Text Search (FTS)</h1>
+
+    <div class="ui padded segment">
+
+        <h2 class="ui dividing sub header">
+            Fuzzy search
+        </h2>
+
+        <div class="ui horizontal search padded basic segment">
+            <div class="ui fluid icon input">
+                <input class="prompt" type="text" placeholder="fuzzy search...">
+                <i class="search icon"></i>
+            </div>
+            <div class="results"></div>
+        </div>
+
+        <script>
+            $('.ui.search')
+              .search({
+                apiSettings: {
+                  url: '/api/search?q={query}'
+                },
+                minCharacters: 3
+              });
+
+        </script>
+
+    </div>
+
+
+    <div class="ui padded segment">
+        <h2 class="ui dividing sub header">
+            Category search
+        </h2>
+
+        <p>category search</p>
+    </div>
+
+
+</div>
+
+</body>
+</html>
