@@ -37,4 +37,10 @@ public class SearchController {
         model.addAttribute("quotes", quotesService.ftsFindQuotes(q));
         return "quotes";
     }
+
+    @GetMapping("/quotes/fts2")
+    public String ftsQuotes2(@RequestParam(name = "q") String q, Model model) {
+        model.addAttribute("quotes", quotesService.ftsFindQuotes(q));
+        return "quotes";
+    }
 }

@@ -46,6 +46,21 @@ join     movies_actors ma on ma.actor_id = a.id
 join     movies m on m.id = ma.movie_id
 ;
 
+create or replace view movies_info_v
+as
+select   m.id
+,        m.title
+,        coalesce(( 
+           select   string_agg(a.name::text, ', '::text) as string_agg
+           from     actors a
+           join     movies_actors ma on ma.actor_id = a.id and ma.movie_id = m.id
+           ), ''::text) as actors
+,        coalesce(( 
+           select   string_agg(g.name::text, ', '::text) as string_agg
+           from     genres g
+           join     movies_genres mg on mg.genre_id = g.id and mg.movie_id = m.id
+           where    mg.score > 0), ''::text) as genres
+from     movies m
 
 -----------------------------------------
 -- QUOTES

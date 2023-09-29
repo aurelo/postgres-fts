@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta data-th-replace="~{fragments/scripts::js_css}"/>
+    <title>Quote</title>
+</head>
+<body>
+
+<div class="ui padded segment container">
+
+    <div class="ui padded segment">
+        <a data-th-href="@{/}" class="ui tertiary icon button">
+            <i class="ui arrow left icon"></i>Back to search
+        </a>
+    </div>
+
+    <h1 class="ui header">
+        Quote
+    </h1>
+
+    <div class="ui massive fluid card" data-th-if="${quote}">
+        <div class="content">
+            <div class="header" data-th-text="${quote.author}">Author Name</div>
+<!--            <div class="meta">-->
+<!--                <span class="category">Variant</span>-->
+<!--            </div>-->
+            <div class="description" data-th-text="${quote.quote}">
+                Quote
+            </div>
+        </div>
+        <div class="extra content" data-th-if="${quote.ranking}">
+            <div class="right floated author" data-th-text="${quote.ranking}">
+                Author
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

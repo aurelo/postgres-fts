@@ -1,4 +1,4 @@
-package hr.kanezi.postgres.fts.quotes;
+package hr.kanezi.postgres.fts.search;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,18 +8,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "quotes")
+@Table(name = "fts_documents")
 @Data
 @NoArgsConstructor
-public class QuotesEntity {
-
+public class FtsDocuments {
     @Id
-    Long id;
-
-    String quote;
-    String author;
-    String fts;
+    String id;
+    String type;
+    String title;
+    String description;
+    String meta;
+    String url;
+    String doc;
 
     @Transient
-    String ranking;
+    Double ranking;
 }
