@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-th-replace="~{fragments/skeleton::layout (~{::movie_content})}">
 <head>
     <meta charset="UTF-8">
-    <meta data-th-replace="~{fragments/scripts::js_css}"/>
     <title>Movie</title>
 </head>
 <body>
 
-<div class="ui padded segment container">
+<div class="ui padded segment container" data-th-fragment="movie_content">
 
-    <div class="ui padded segment">
+    <div class="ui left aligned container">
         <a data-th-href="@{/}" class="ui tertiary icon button">
             <i class="ui arrow left icon"></i>Back to search
         </a>
+        <h1 class="ui dividing header">
+            Movie
+        </h1>
     </div>
-
-    <h1 class="ui header">
-        Movie
-    </h1>
 
 
     <div class="ui massive fluid card" data-th-if="${movie}">
@@ -29,8 +27,8 @@
         </div>
 
         <div class="extra content" data-th-if="${movie.genres}">
-                <i class="tag icon"></i>
-                <span data-th-text="${movie.genres}"></span>
+            <i class="tag icon"></i>
+            <span data-th-text="${movie.genres}"></span>
         </div>
 
     </div>

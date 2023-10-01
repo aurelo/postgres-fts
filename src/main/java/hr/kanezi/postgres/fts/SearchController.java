@@ -1,46 +1,44 @@
 package hr.kanezi.postgres.fts;
 
 import hr.kanezi.postgres.fts.quotes.QuotesService;
+import hr.kanezi.postgres.fts.search.FtsDocuments;
+import hr.kanezi.postgres.fts.search.FtsService;
 import lombok.Value;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
 @Value
+@Log4j2
+@SessionAttributes("q")
 public class SearchController {
 
-    QuotesService quotesService;
+    FtsService ftsService;
 
     @GetMapping
     public String home() {
         return "search";
     }
 
-    @GetMapping("/quotes")
-    public String quotes(Model model) {
-        model.addAttribute("quotes", quotesService.getQuotes());
-        return "quotes";
+    @PostMapping("/search")
+    public String search(String q, RedirectAttributes attributes) {
+        log.info("search for : {}", q);
+        attributes.addFlashAttribute("q", q);
+
+        List<FtsDocuments> docs = ftsService.search(q, 25L);
+        attributes.addFlashAttribute("docs", docs);
+
+        if (docs.isEmpty()) {
+            attributes.addFlashAttribute("misspelling", ftsService.misspellings(q));
+        }
+
+        return "redirect:/";
     }
 
-    @GetMapping("/quotes/find")
-    public String queryQuotes(@RequestParam(name = "q") String q, Model model) {
-        model.addAttribute("quotes", quotesService.findQuotes(q));
-        return "quotes";
-    }
-
-    @GetMapping("/quotes/fts")
-    public String ftsQuotes(@RequestParam(name = "q") String q, Model model) {
-        model.addAttribute("quotes", quotesService.ftsFindQuotes(q));
-        return "quotes";
-    }
-
-    @GetMapping("/quotes/fts2")
-    public String ftsQuotes2(@RequestParam(name = "q") String q, Model model) {
-        model.addAttribute("quotes", quotesService.ftsFindQuotes(q));
-        return "quotes";
-    }
 }

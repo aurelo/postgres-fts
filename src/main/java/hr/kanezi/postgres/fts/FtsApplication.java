@@ -1,6 +1,6 @@
 package hr.kanezi.postgres.fts;
 
-import hr.kanezi.postgres.fts.quotes.QuotesEntityRepository;
+import hr.kanezi.postgres.fts.quotes.QuotesViewRepository;
 import lombok.Value;
 import lombok.experimental.NonFinal;
 import lombok.extern.log4j.Log4j2;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 @Log4j2
 public class FtsApplication {
 
-	QuotesEntityRepository quotesEntityRepository;
+	QuotesViewRepository quotesViewRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(FtsApplication.class, args);
@@ -25,7 +25,7 @@ public class FtsApplication {
 	@Bean
 	CommandLineRunner commandLineRunner() {
 		return args -> {
-			log.info("number of quotes: {}", quotesEntityRepository.count());
+			log.info("number of quotes: {}", quotesViewRepository.count());
 		};
 	}
 

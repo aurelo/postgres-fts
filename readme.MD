@@ -26,3 +26,12 @@ stop words
 ```
 /usr/share/postgresql/15/tsearch_data
 ```
+
+-----
+
+
+[basic showcase](/DOCS/PGshowcase.MD)
+
+[building fts document](/DOCS/materialized_view.MD)
+
+[misspellings](/DOCS/misspelling.MD)

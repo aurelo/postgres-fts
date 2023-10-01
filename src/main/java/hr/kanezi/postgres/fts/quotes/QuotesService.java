@@ -10,27 +10,27 @@ import java.util.Optional;
 @Value
 public class QuotesService {
 
-    QuotesEntityRepository quotesEntityRepository;
+    QuotesViewRepository quotesViewRepository;
 
-    public List<QuotesEntity> getQuotes() {
-        return quotesEntityRepository.findAll();
+    public List<QuotesView> getQuotes() {
+        return quotesViewRepository.findAll();
     }
 
-    public Optional<QuotesEntity> findById(Long quoteId) {
-        return quotesEntityRepository.findById(quoteId);
+    public Optional<QuotesView> findById(Long quoteId) {
+        return quotesViewRepository.findById(quoteId);
     }
 
-    public List<QuotesEntity> findQuotes(String query) {
-        return quotesEntityRepository.findSimilarQuotes(query);
-    }
-
-    public List<QuotesEntity> ftsFindQuotes(String query) {
-        return quotesEntityRepository.ftsFindQuotes(query);
-    }
-
-    public List<QuotesEntity> ftsFindQuotes2(String query) {
-        return quotesEntityRepository.ftsFindQuotes2(query);
-    }
+    //public List<QuotesView> findQuotes(String query) {
+//        return quotesViewRepository.findSimilarQuotes(query);
+//    }
+//
+//    public List<QuotesView> ftsFindQuotes(String query) {
+//        return quotesViewRepository.ftsFindQuotes(query);
+//    }
+//
+//    public List<QuotesView> ftsFindQuotes2(String query) {
+//        return quotesViewRepository.ftsFindQuotes2(query);
+//    }
 
 
 }

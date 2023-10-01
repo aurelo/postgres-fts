@@ -21,6 +21,6 @@ public class FtsDocuments {
     String url;
     String doc;
 
-    @Transient
+    //@Transient
     Double ranking;
 }

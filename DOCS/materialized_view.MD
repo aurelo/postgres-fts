@@ -46,3 +46,47 @@ from     movies m
 create index idx_doc_fts_search on fts_documents using  gin(fts)
 
 ```
+
+
+triggers:
+
+```
+  create or replace function refresh_fts_documents()
+  returns trigger 
+  language plpgsql
+  as $$
+  begin
+      refresh materialized view concurrently fts_documents;
+      return null;
+  end $$;
+```
+
+```
+create trigger refresh_fts_4_quotes
+  after insert or update or delete or truncate
+  on quotes
+  for each statement
+  execute procedure refresh_fts_documents();
+```
+
+to refresh materialized view concurrently table needs unique index
+
+```
+create unique index idx_doc_id on fts_documents (id)
+```
+
+Example of inserts on quotes:
+
+```
+insert into quotes (id, quote, author)
+  values (10000, 'There are only two hard things in Computer Science: cache invalidation and naming things.', 'Phil Karlton')
+
+    select   *
+    from     quotes q 
+    order by id desc 
+    
+    select   *
+    from     fts_documents 
+    where    id = 'QUOTES_10000'
+
+```

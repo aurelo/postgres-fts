@@ -8,18 +8,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "quotes")
+@Table(name = "v_quotes")
 @Data
 @NoArgsConstructor
-public class QuotesEntity {
+public class QuotesView {
 
     @Id
     Long id;
 
     String quote;
     String author;
-    String fts;
+    String tags;
 
-    @Transient
-    String ranking;
 }
