@@ -1,6 +1,22 @@
 For misspeling create unique words using ts_stat, materialized view and index
 
 ```
+create extension pg_trgm
+
+select   show_trgm('Two')
+,        show_trgm('Who')
+,        similarity('Something', 'something')
+,        similarity('Something', 'somthing')
+,        similarity('Something', 'unrelated')
+,        similarity('Something', 'everything')
+,        'Something' % 'somthing' are_similar
+,        'Something' <-> 'somthing' how_similar
+,        show_limit()
+--,        set_limit(0.5)
+```
+
+
+```
 select word from  ts_stat(
    'select   to_tsvector(''simple'', fd.title)
     ||       to_tsvector(''simple'', fd.description)
