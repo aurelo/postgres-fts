@@ -40,6 +40,10 @@ from     drop_me
 
 drop table drop_me
 
+-- example of tokenizers --
+select   ts_parse('default', 'please have a good day') -- parse sentence to tokens - tokenid # token
+,        ts_lexize('english_stem', 'happiness') -- dictionary function - accepts token on input and return array of tokens
+
 -- St. Francis Of Assisi quote
 select   q.quote 
 ,        q.author
